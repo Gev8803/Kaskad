@@ -210,4 +210,59 @@ py manage.py seed_content --force
   convenience.
 - Optionally switch `DATABASE` to PostgreSQL via the `DB_*` env vars.
 - Back up `backend/db.sqlite3` (or your DB) and `backend/media/` regularly.
+
+### Hostinger VPS + GitHub Actions
+
+The workflow at `.github/workflows/main.yml` uploads `backend/` and `site/` to
+`/var/www/kaskad`, then migrates the database, collects static files, and
+restarts the `kaskad` Gunicorn service. It deliberately does not upload `.env`,
+the SQLite database, or uploaded media.
+
+One-time VPS setup (Ubuntu):
+
+1. Create a non-root deployment user with passwordless `sudo` access for the
+  workflow, then install Python and venv support:
+
+  ```bash
+  sudo apt update
+  sudo apt install -y python3 python3-venv
+  sudo mkdir -p /var/www/kaskad/backend
+  sudo chown -R "$USER":"$USER" /var/www/kaskad
+  ```
+
+2. Create `/var/www/kaskad/backend/.env` using `.env.example`; set at least a
+  unique `SECRET_KEY`, `DEBUG=False`, your domain in `ALLOWED_HOSTS`, and the
+  HTTPS domain in `CSRF_TRUSTED_ORIGINS`. Keep this file and the deploy user's
+  credentials private.
+
+3. Add these repository Actions secrets: `SERVER_HOST`, `SERVER_USER`, and
+  `SERVER_PASSWORD`. Push to `main` to deploy.
+
+4. Configure nginx to serve static files and uploads from
+   `/var/www/kaskad/backend/staticfiles/` and
+   `/var/www/kaskad/backend/media/`, and proxy other requests to
+   `http://127.0.0.1:8000`. For example, inside your domain's `server` block:
+
+   ```nginx
+   location /static/ {
+     alias /var/www/kaskad/backend/staticfiles/;
+   }
+   location /media/ {
+     alias /var/www/kaskad/backend/media/;
+   }
+   location / {
+     proxy_pass http://127.0.0.1:8000;
+     proxy_set_header Host $host;
+     proxy_set_header X-Real-IP $remote_addr;
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     proxy_set_header X-Forwarded-Proto $scheme;
+   }
+   ```
+
+   The workflow configures Gunicorn but does not alter your VPS firewall,
+   nginx, or TLS certificate.
+
+The deployment user's `sudo` must be non-interactive for the systemd commands
+used by the workflow. The target directory and `.env` must exist before the
+first push; database and media files remain on the VPS across deployments.
 ```

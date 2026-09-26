@@ -8,10 +8,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Upload application
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          source: "backend,site"
+          target: "/var/www/kaskad"
+          exclude: "backend/.env,backend/db.sqlite3,backend/*.sqlite3,backend/media/**,backend/.venv/**,backend/venv/**,backend/staticfiles/**,backend/**/__pycache__/**"
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -20,11 +32,40 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /var/www/myproject
-            git pull origin main
-            
-            source venv/bin/activate
-            pip install -r requirements.txt
-            python manage.py migrate
-            python manage.py collectstatic --noinput
-            systemctl restart gunicorn
+            set -eu
+            DEPLOY_DIR=/var/www/kaskad
+            BACKEND_DIR="$DEPLOY_DIR/backend"
+
+            if [ ! -f "$BACKEND_DIR/.env" ]; then
+              echo "Missing $BACKEND_DIR/.env; create the production environment file on the VPS first."
+              exit 1
+            fi
+
+            cd "$BACKEND_DIR"
+            python3 -m venv .venv
+            .venv/bin/python -m pip install --upgrade pip
+            .venv/bin/pip install -r requirements.txt
+            .venv/bin/python manage.py migrate --noinput
+            .venv/bin/python manage.py collectstatic --noinput
+
+            DEPLOY_USER="$(id -un)"
+            sudo tee /etc/systemd/system/kaskad.service >/dev/null <<EOF
+            [Unit]
+            Description=Kaskad Django application
+            After=network.target
+
+            [Service]
+            Type=simple
+            User=$DEPLOY_USER
+            Group=$DEPLOY_USER
+            WorkingDirectory=$BACKEND_DIR
+            EnvironmentFile=$BACKEND_DIR/.env
+            ExecStart=$BACKEND_DIR/.venv/bin/gunicorn kaskad_cms.wsgi:application --bind 127.0.0.1:8000 --workers 3
+            Restart=on-failure
+
+            [Install]
+            WantedBy=multi-user.target
+            EOF
+            sudo systemctl daemon-reload
+            sudo systemctl enable kaskad
+            sudo systemctl restart kaskad
