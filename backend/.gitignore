@@ -1,0 +1,19 @@
+# Environment / secrets
+.env
+
+# Database
+db.sqlite3
+*.sqlite3
+
+# Uploaded media
+media/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Collected static
+staticfiles/

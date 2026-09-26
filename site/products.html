@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="hy" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+  <title>Products — Switchgear & Meters — KASKAD GROUP</title>
+  <meta name="description" content="Unified catalogue of medium-voltage switchgear and smart electricity meters with search and filtering." />
+  <link rel="canonical" href="https://kaskadgroup.am/products.html" />
+  <link rel="alternate" hreflang="hy" href="https://kaskadgroup.am/products.html?lang=hy" />
+  <link rel="alternate" hreflang="ru" href="https://kaskadgroup.am/products.html?lang=ru" />
+  <link rel="alternate" hreflang="en" href="https://kaskadgroup.am/products.html?lang=en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+Armenian:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body data-page="products">
+  <header id="site-header"></header>
+  <main>
+    <section class="hero hero--page">
+      <div class="wrap hero__in">
+        <p class="breadcrumbs"><a href="index.html" data-i18n="nav.home"></a> / <span data-i18n="nav.products"></span></p>
+        <h1 class="hero__title" data-i18n="products.hero.title"></h1>
+        <p class="hero__sub" data-i18n="products.hero.subtitle"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="productSearch" type="search" data-i18n-ph="search.placeholder" />
+        </div>
+        <div class="chips" data-scope="products">
+          <button class="chip active" data-filter="all" data-i18n="products.filter.all"></button>
+          <button class="chip" data-filter="switchgear" data-i18n="products.filter.switchgear"></button>
+          <button class="chip" data-filter="meters" data-i18n="products.filter.meters"></button>
+        </div>
+        <div class="grid grid--3" data-render="allProducts"></div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <button id="toTop" aria-label="Top"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <script src="assets/js/data.common.js"></script>
+  <script src="assets/js/data.construction.js"></script>
+  <script src="assets/js/data.switchgear.js"></script>
+  <script src="assets/js/data.meters.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/data.api.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
