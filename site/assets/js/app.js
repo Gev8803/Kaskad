@@ -70,13 +70,13 @@
   }
   /* Real image inside the same .media box (aspect-ratio + overflow preserved),
      falling back to the styled placeholder when no URL is available. */
-  function mediaImg(url, label, variant) {
+  function mediaImg(url, label, variant, objectFit) {
     if (!url) return media(label, variant);
     var v = variant || "a";
     var safe = String(label == null ? "" : label).replace(/"/g, "");
-    return '<div class="media media--' + v + '" role="img" aria-label="' + safe + '">' +
+    return '<div class="media media--' + v + (objectFit === "contain" ? " media--contain" : "") + '" role="img" aria-label="' + safe + '">' +
       '<img src="' + url + '" alt="' + safe + '" loading="lazy" ' +
-      'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2" />' +
+      'style="position:absolute;inset:0;width:100%;height:100%;object-fit:' + (objectFit || "cover") + ';object-position:center;z-index:2" />' +
       '</div>';
   }
 
@@ -450,7 +450,7 @@
         }).join("") + '</ul>'
       : '';
     return '<article class="prodcard reveal" data-cat="' + m.category + '" style="--d:' + (i * 55) + 'ms">' +
-      '<div class="prodcard__media">' + mediaImg(m.image, m.name, "d") + '</div>' +
+      '<div class="prodcard__media">' + mediaImg(m.image, m.name, "d", "contain") + '</div>' +
       '<div class="prodcard__body"><span class="tag">' + pick(m.form) + ' · ' + t("label.accuracy") + ' ' + m.accuracy + '</span>' +
       '<h3>' + m.name + '</h3><p>' + pick(m.tagline) + '</p>' +
       '<div class="minis">' + chips + '</div>' + featBlock + '</div></article>';

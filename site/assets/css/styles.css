@@ -258,6 +258,7 @@ body.nav-open .burger span:nth-child(3) { top: 20px; transform: rotate(-45deg); 
 .media--c { background: linear-gradient(135deg, #0d2f42, #0f8ce8); }
 .media--d { background: linear-gradient(135deg, #12324e, #2b6f9e); }
 .media--e { background: linear-gradient(135deg, #143a2e, #1f6f52); }
+.media--contain { background: var(--paper); }
 
 /* Stats */
 .stat { text-align: center; padding: 1.4rem 1rem; }
