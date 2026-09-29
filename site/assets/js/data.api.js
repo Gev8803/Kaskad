@@ -12,18 +12,17 @@
 (function () {
   "use strict";
 
-  // The API only lives on the Django backend (dev default: port 8000). Only when
-  // THIS page is itself served by that backend can we use a same-origin "/api".
-  // In every other case — opened from disk (file://) or served by another dev
-  // server such as Live Server on :5500 — a relative "/api" would resolve to the
-  // wrong origin and 404, so we point explicitly at the backend on port 8000.
+  // Use the same origin in production so HTTPS pages fetch the API securely.
+  // For local files or a separate local dev server, use the Django backend on
+  // port 8000 instead.
   // Override for other hosts, e.g.
   //   <script>window.KASKAD_API_BASE="https://cms.example.com/api"</script>
   var BACKEND_PORT = "8000";
-  var servedByBackend =
-    location.protocol !== "file:" && location.port === BACKEND_PORT;
   var backendHost = location.hostname || "127.0.0.1";
-  var DEFAULT_BASE = servedByBackend
+  var servedByBackend =
+    location.protocol !== "file:" &&
+    (!location.port || location.port === "80" || location.port === "443" || location.port === BACKEND_PORT);
+  var DEFAULT_BASE = location.protocol !== "file:" && servedByBackend
     ? "/api"
     : "http://" + backendHost + ":" + BACKEND_PORT + "/api";
   var API_BASE = (window.KASKAD_API_BASE || DEFAULT_BASE).replace(/\/+$/, "");
