@@ -168,6 +168,17 @@
   function renderChrome() {
     fill("topAddr", pick(window.DATA.company.contact.address));
     fill("footAddr", pick(window.DATA.company.contact.address));
+    var contact = window.DATA.company.contact;
+    var phone = $("#cPhone");
+    if (phone) {
+      phone.textContent = contact.phone;
+      phone.href = "tel:" + contact.phoneLink;
+    }
+    var email = $("#cMail");
+    if (email) {
+      email.textContent = contact.email;
+      email.href = "mailto:" + contact.email;
+    }
   }
 
   /* Divisions (home) */

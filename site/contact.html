@@ -74,12 +74,5 @@
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/data.api.js"></script>
   <script src="assets/js/app.js"></script>
-  <script>
-    (function () {
-      var c = window.DATA.company.contact;
-      var p = document.getElementById("cPhone"); if (p) { p.textContent = c.phone; p.href = "tel:" + c.phoneLink; }
-      var m = document.getElementById("cMail"); if (m) { m.textContent = c.email; m.href = "mailto:" + c.email; }
-    })();
-  </script>
 </body>
 </html>
