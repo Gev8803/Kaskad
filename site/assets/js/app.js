@@ -273,7 +273,7 @@
         var hasItemImg = (c.items || []).some(function (it) { return it.image; });
         var lis = (c.items || []).map(function (it) {
           if (hasItemImg) {
-            return '<li class="module"><div class="module__media">' + mediaImg(it.image, it.code, "c") +
+            return '<li class="module"><div class="module__media">' + mediaImg(it.image, it.code, "c", "contain") +
               '</div><div class="module__cap"><b>' + it.code + '</b> — ' + pick(it.name) + '</div></li>';
           }
           return '<li><b>' + it.code + '</b> — ' + pick(it.name) + '</li>';

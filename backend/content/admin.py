@@ -215,7 +215,7 @@ class ProjectAdmin(PublishedListMixin, admin.ModelAdmin):
 class SwitchgearItemInline(admin.TabularInline):
     model = models.SwitchgearItem
     extra = 0
-    fields = ("code", "preview", "name_ru", "sort", "is_published")
+    fields = ("code", "image", "preview", "name_ru", "sort", "is_published")
     readonly_fields = ("preview",)
     show_change_link = True  # open the module's own full detail page
 
