@@ -10,7 +10,7 @@ so the frontend keeps setting <html dir> from live data.
 UI_STRINGS = {
     "meta.dir": ("ltr", "ltr", "ltr"),
     "brand.name": ("ԿԱՍԿԱԴ", "КАСКАД", "KASKAD"),
-    "brand.suffix": ("ԳՐՈՒՊ", "ГРУПП", "GROUP"),
+    "brand.suffix": ("ՀՈԼԴԻՆԳ", "ХОЛДИНГ", "HOLDING"),
     "brand.tagline": ("Փոխակերպումների էներգիա", "Энергия преобразований", "Energy of Transformations"),
 
     "nav.home": ("Գլխավոր", "Главная", "Home"),

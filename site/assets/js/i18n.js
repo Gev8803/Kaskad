@@ -8,7 +8,7 @@ window.I18N = {
   hy: {
     "meta.dir": "ltr",
     "brand.name": "ԿԱՍԿԱԴ",
-    "brand.suffix": "ԳՐՈՒՊ",
+    "brand.suffix": "ՀՈԼԴԻՆԳ",
     "brand.tagline": "Փոխակերպումների էներգիա",
 
     /* Navigation */
@@ -167,7 +167,7 @@ window.I18N = {
   ru: {
     "meta.dir": "ltr",
     "brand.name": "КАСКАД",
-    "brand.suffix": "ГРУПП",
+    "brand.suffix": "ХОЛДИНГ",
     "brand.tagline": "Энергия преобразований",
 
     "nav.home": "Главная",
@@ -312,7 +312,7 @@ window.I18N = {
   en: {
     "meta.dir": "ltr",
     "brand.name": "KASKAD",
-    "brand.suffix": "GROUP",
+    "brand.suffix": "HOLDING",
     "brand.tagline": "Energy of Transformations",
 
     "nav.home": "Home",

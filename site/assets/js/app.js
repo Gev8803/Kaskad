@@ -108,8 +108,9 @@
         '<span class="topbar__item topbar__addr">' + icon("pin") + '<span data-render="topAddr"></span></span>' +
       '</div></div>' +
       '<div class="wrap header__in">' +
-        '<a class="brand" href="index.html" aria-label="KASKAD Holding">' +
-          '<img class="brand__logo" src="assets/img/logo-light.png" alt="KASKAD Holding" width="362" height="96" />' +
+        '<a class="brand" href="index.html">' +
+          '<span class="brand__mark"><img src="assets/img/logo-light.png" alt="" aria-hidden="true" /></span>' +
+          '<span class="brand__text"><span class="brand__name" data-i18n="brand.name"></span><span class="brand__suffix" data-i18n="brand.suffix"></span></span>' +
         '</a>' +
         '<nav class="nav" id="primaryNav">' + links + '</nav>' +
         '<div class="header__tools">' +
@@ -130,8 +131,9 @@
     host.innerHTML =
       '<div class="wrap foot__grid">' +
         '<div class="foot__col foot__brand">' +
-          '<a class="brand brand--foot" href="index.html" aria-label="KASKAD Holding">' +
-          '<img class="brand__logo" src="assets/img/logo-light.png" alt="KASKAD Holding" width="362" height="96" /></a>' +
+          '<a class="brand brand--foot" href="index.html">' +
+          '<span class="brand__mark"><img src="assets/img/logo-light.png" alt="" aria-hidden="true" /></span>' +
+          '<span class="brand__text"><span class="brand__name" data-i18n="brand.name"></span><span class="brand__suffix" data-i18n="brand.suffix"></span></span></a>' +
           '<p class="foot__about" data-i18n="footer.about"></p>' +
         '</div>' +
         col("footer.divisions", [["nav.construction","construction.html"],["nav.switchgear","switchgear.html"],["nav.meters","meters.html"],["nav.products","products.html"]]) +
