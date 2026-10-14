@@ -140,7 +140,7 @@ UI_STRINGS = {
     "contact.form.subject": ("Թեմա", "Тема", "Subject"),
     "contact.form.message": ("Հաղորդագրություն", "Сообщение", "Message"),
     "contact.form.submit": ("Ուղարկել", "Отправить", "Send"),
-    "contact.form.success": ("Շնորհակալություն։ Ձեր հաղորդագրությունն ուղարկվեց (դեմո)։", "Спасибо! Ваше сообщение отправлено (демо).", "Thank you! Your message has been sent (demo)."),
+    "contact.form.success": ("Շնորհակալություն։ Ձեր հաղորդագրությունը ստացվել է։", "Спасибо! Ваше сообщение получено.", "Thank you. Your message has been received."),
     "contact.map.title": ("Քարտեզ", "Карта", "Map"),
 
     "footer.about": ("Կասկադ Գրուպ — էներգետիկ ինժեներինգ, բաշխիչ սարքերի և խելացի հաշվիչների արտադրություն Երևանում։", "Каскад Групп — энергетический инжиниринг, производство распредустройств и умных счётчиков в Ереване.", "Kaskad Group — power engineering, switchgear and smart-meter manufacturing, headquartered in Yerevan."),

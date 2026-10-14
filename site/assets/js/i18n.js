@@ -151,7 +151,7 @@ window.I18N = {
     "contact.form.subject": "Թեմա",
     "contact.form.message": "Հաղորդագրություն",
     "contact.form.submit": "Ուղարկել",
-    "contact.form.success": "Շնորհակալություն։ Ձեր հաղորդագրությունն ուղարկվեց (դեմո)։",
+    "contact.form.success": "Շնորհակալություն։ Ձեր հաղորդագրությունը ստացվել է։",
     "contact.map.title": "Քարտեզ",
 
     /* Footer */
@@ -297,7 +297,7 @@ window.I18N = {
     "contact.form.subject": "Тема",
     "contact.form.message": "Сообщение",
     "contact.form.submit": "Отправить",
-    "contact.form.success": "Спасибо! Ваше сообщение отправлено (демо).",
+    "contact.form.success": "Спасибо! Ваше сообщение получено.",
     "contact.map.title": "Карта",
 
     "footer.about": "Каскад Групп — энергетический инжиниринг, производство распредустройств и умных счётчиков в Ереване.",
@@ -442,7 +442,7 @@ window.I18N = {
     "contact.form.subject": "Subject",
     "contact.form.message": "Message",
     "contact.form.submit": "Send",
-    "contact.form.success": "Thank you! Your message has been sent (demo).",
+    "contact.form.success": "Thank you. Your message has been received.",
     "contact.map.title": "Map",
 
     "footer.about": "Kaskad Group — power engineering, switchgear and smart-meter manufacturing, headquartered in Yerevan.",

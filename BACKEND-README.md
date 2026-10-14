@@ -149,9 +149,18 @@ one endpoint, **`GET /api/content/`**, shaped exactly like the site's original
 
 ## 6. Contact form
 
-The contact form now **POSTs to `/api/contact/`** and stores each submission as
-a **Contact message** in the admin (with basic validation and rate-limiting).
-Over `file://` (no server) it falls back to the original demo confirmation.
+The contact form **POSTs to `/api/contact/`** and stores each submission as a
+**Contact message** in the admin, with basic validation and rate-limiting.
+Review messages at **Admin → Other → Contact messages**.
+
+To also receive an email notification for each submission, configure the
+outbound SMTP settings in `backend/.env` using your mail provider's values.
+For Hostinger email, check the mailbox's SMTP settings in hPanel. The recipient
+is the public address in **Company → Site settings → Email**. Set
+`DEFAULT_FROM_EMAIL` and `EMAIL_HOST_USER` to the authenticated mailbox address;
+keep `EMAIL_HOST_PASSWORD` private. If SMTP is not configured or delivery fails,
+the message remains saved in the admin and the server logs the notification
+failure.
 
 ---
 

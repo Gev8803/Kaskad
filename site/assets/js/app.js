@@ -686,15 +686,29 @@
         subject: (form.subject && form.subject.value || "").trim(),
         message: (form.message && form.message.value || "").trim()
       };
-      function done() {
-        if (msg) { msg.textContent = t("contact.form.success"); msg.classList.add("show"); }
-        form.reset();
+      function showResult(sent) {
+        var text = sent
+          ? {
+              hy: "Շնորհակալություն։ Ձեր հաղորդագրությունը ստացվել է։",
+              ru: "Спасибо! Ваше сообщение получено.",
+              en: "Thank you. Your message has been received."
+            }
+          : {
+              hy: "Չհաջողվեց ուղարկել հաղորդագրությունը։ Խնդրում ենք փորձել ավելի ուշ։",
+              ru: "Не удалось отправить сообщение. Попробуйте позже.",
+              en: "We couldn't send your message. Please try again later."
+            };
+        if (msg) {
+          msg.textContent = text[lang];
+          msg.classList.toggle("error", !sent);
+          msg.classList.add("show");
+        }
+        if (sent) form.reset();
       }
-      // Send to the CMS backend when available; fall back to the demo message.
       if (window.KASKAD && typeof window.KASKAD.sendContact === "function") {
-        window.KASKAD.sendContact(payload).then(done, done);
+        window.KASKAD.sendContact(payload).then(showResult, function () { showResult(false); });
       } else {
-        done();
+        showResult(false);
       }
     });
   }
