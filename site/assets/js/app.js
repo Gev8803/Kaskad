@@ -73,10 +73,11 @@
   function mediaImg(url, label, variant, objectFit) {
     if (!url) return media(label, variant);
     var v = variant || "a";
+    var fit = objectFit || "contain";
     var safe = String(label == null ? "" : label).replace(/"/g, "");
-    return '<div class="media media--' + v + (objectFit === "contain" ? " media--contain" : "") + '" role="img" aria-label="' + safe + '">' +
+    return '<div class="media media--' + v + (fit === "contain" ? " media--contain" : "") + '" role="img" aria-label="' + safe + '">' +
       '<img src="' + url + '" alt="' + safe + '" loading="lazy" ' +
-      'style="position:absolute;inset:0;width:100%;height:100%;object-fit:' + (objectFit || "cover") + ';object-position:center;z-index:2" />' +
+      'style="position:absolute;inset:0;width:100%;height:100%;object-fit:' + fit + ';object-position:center;z-index:2" />' +
       '</div>';
   }
 
